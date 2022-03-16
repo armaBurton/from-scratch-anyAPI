@@ -55,4 +55,29 @@ describe('alchemy-app routes', () => {
       length_meters: 120
     });
   });
+
+  it('should update a resource with the matching id', async () => {
+    const res = await request(app)
+      .patch('/api/v1/star_trek_ships/2')
+      .send({
+        name: 'Seleya',
+        faction: 'Vulcan',
+        class_specifications: 'Combat cruiser',
+        crew_compliment: '147',
+        length_meters: 600
+      });
+
+    const expected = {
+      name: 'Seleya',
+      faction: 'Vulcan',
+      id: expect.any(String),
+      class_specifications: 'Combat cruiser',
+      crew_compliment: 147,
+      length_meters: 600
+    };
+
+    expect(res.body).toEqual(expected);
+    expect(await Ship.getShipById(2)).toEqual(expected);
+  });
+
 });
