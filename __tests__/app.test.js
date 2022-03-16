@@ -80,4 +80,21 @@ describe('alchemy-app routes', () => {
     expect(await Ship.getShipById(2)).toEqual(expected);
   });
 
+  it('should be able to delete a ship', async () => {
+    const res = await request(app)
+      .delete('/api/v1/star_trek_ships/2');
+
+    const expected = {
+      name: 'IKS Gr`oth',
+      faction: 'Klingon Empire',
+      id: expect.any(String),
+      class_specifications: 'Battlecruiser',
+      crew_compliment: 440,
+      length_meters: 228
+    };
+
+    expect(res.body).toEqual(expected);
+    expect(await Ship.getShipById(2)).toBeNull();
+  });
+
 });
