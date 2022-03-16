@@ -41,4 +41,18 @@ describe('alchemy-app routes', () => {
     
     expect(res.body).toEqual(expected);
   });
+
+  it('should be able to get a ship by id', async () => {
+    const res = await request(app)
+      .get('/api/v1/star_trek_ships/1');
+
+    expect(res.body).toEqual({
+      name: 'USS Defiant NX-74205',
+      faction: 'Federation',
+      id: expect.any(String),
+      class_specifications: 'Escort',
+      crew_compliment: 47,
+      length_meters: 120
+    });
+  });
 });
