@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const Ship = require('../lib/models/Ship');
 
 describe('alchemy-app routes', () => {
   beforeEach(() => {
@@ -13,16 +14,11 @@ describe('alchemy-app routes', () => {
   });
 
 
-  it('should be able to create an new instance of a space ship', async () => {
+  it('should be able to get all space ships', async () => {
+    const expected = await Ship.findAll();
     const res = await request(app)
-      .get('/api/v1/space_ship');
-      // .send({ name: 'Pizza', age: 3, favoriteTreat: 'Pizza' });
-
-    console.log('|| res.body >', res.body);
-    // console.log('|| re.body >', res.body);
-    // expect(res.body).toEqual([
-
-    // ]);
+      .get('/api/v1/star_trek_ships');
     
+    expect(res.body).toEqual(expected);
   });
 });

@@ -8,11 +8,18 @@ CREATE TABLE star_trek_ships (
   faction TEXT NOT NULL,
   class_specifications TEXT NOT NULL,
   crew_compliment INT NOT NULL,
-  length_meters INT NOT NULL,
-)
+  length_meters INT NOT NULL
+);
 
--- INSERT INTO
---   star_trek_ships (name, species, class_specifications, crew_compliment, length_meters)
--- VALUES
---   (`USS Defiant NX-74205`, 'Federation', 'Escort', 47, 120)
---   (`IKS Gr'oth`, 'Klingon Empire', `Battlecruiser`, 440, 228);
+INSERT INTO
+  star_trek_ships (
+    name, 
+    faction, 
+    class_specifications, 
+    crew_compliment, 
+    length_meters
+  )
+
+VALUES
+  ('USS Defiant NX-74205', 'Federation', 'Escort', 47, 120),
+  ('IKS Gr`oth', 'Klingon Empire', 'Battlecruiser', 440, 228);
